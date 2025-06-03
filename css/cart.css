@@ -1,0 +1,9 @@
+.cart-item {
+    background-color: #c4bfbf;
+    margin-top: 2px;
+}
+
+.hover-image:hover {
+    box-shadow: 0 0 10px 3px rgba(255, 165, 0, 1);
+    cursor: pointer;
+}

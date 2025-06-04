@@ -2,7 +2,7 @@ body {
     color: white;
     background-image: url("../images/background.jpg");
     background-repeat: repeat-y;
-    background-size: 100% auto; 
+    background-size: 100% auto;
     min-height: 100vh;
     font-family: 'Arial Black', Gadget, sans-serif;
 }
@@ -17,7 +17,12 @@ p {
     margin-bottom: 0;
 }
 
-.nav-link, .navbar-brand {
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+.nav-link,
+.navbar-brand {
     color: white !important;
     font-weight: bold;
 }
@@ -30,4 +35,14 @@ p {
 .hover-link:hover {
     text-decoration: underline;
     cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    footer {
+        font-size: small;
+    }
+
+    footer .col {
+        padding: 0;
+    }
 }

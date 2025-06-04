@@ -118,3 +118,43 @@
     font-size: 5rem;
     font-weight: bold;
 }
+
+@media (max-width: 1500px) {
+    #rot-plate-1 {
+        display: none;
+    }
+    
+    #rot-plate-2, #rot-plate-3 {
+        position: absolute;
+        right: 20% !important;
+    }
+}
+
+@media (max-width: 1000px) {
+    #rot-plate-1 {
+        position: absolute;
+        height: 300px;
+        display: block;
+    }
+
+    #rot-plate-2, #rot-plate-3 {
+        display: none;
+    }
+
+    .quote {
+        font-size: 3rem;
+    }
+
+    .card-image {
+        width: 90%;
+    }
+
+    .food-card {
+        width: 80%;
+        height: 300px;
+    }
+
+    .endquote {
+        font-size: 3rem;
+    }
+}

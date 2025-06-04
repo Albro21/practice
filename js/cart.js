@@ -10,7 +10,7 @@ function renderCart() {
     let total = 0;
 
     if (cart.length === 0) {
-        cartItems.innerHTML = `<h3 class="text-center">Your cart is empty</h3>`;
+        cartItems.innerHTML = `<h3 class="text-center mt-4">Your cart is empty</h3>`;
         checkoutBtn.disabled = true;
         totalElem.textContent = '€0.00';
         if (totalNetElem) totalNetElem.textContent = '€0.00';
@@ -90,5 +90,73 @@ function removeItem(id) {
     localStorage.setItem('cart', JSON.stringify(cart));
     renderCart();
 }
+
+function scrollToBottom() {
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+    });
+}
+
+const button = document.getElementById('checkout-btn');
+const addressForm = document.getElementById('address-form');
+const paymentForm = document.getElementById('payment-form');
+
+function checkFormValidity(form) {
+    const inputs = form.querySelectorAll('input[required], select[required]');
+    for (const input of inputs) {
+        if (!input.value.trim()) {
+            return false;
+        }
+    }
+    return true;
+}
+
+function setButtonEnabled(form) {
+    button.disabled = !checkFormValidity(form);
+}
+
+document.getElementById('checkout-btn').addEventListener('click', function () {
+    const stage = button.getAttribute('data-stage');
+
+    if (stage === 'checkout') {
+        const addressCollapse = new bootstrap.Collapse(document.getElementById('address-collapse'), { toggle: false });
+        addressCollapse.show();
+        button.textContent = 'Pasūtīt';
+        button.setAttribute('data-stage', 'order');
+        button.disabled = true;
+        setTimeout(scrollToBottom, 100);
+
+        addressForm.addEventListener('input', () => setButtonEnabled(addressForm));
+    }
+
+    else if (stage === 'order') {
+        if (!addressForm.checkValidity()) {
+            console.log('address form not valid');
+            addressForm.reportValidity();
+            return;
+        }
+
+        const paymentCollapse = new bootstrap.Collapse(document.getElementById('payment-collapse'), { toggle: false });
+        paymentCollapse.show();
+        button.textContent = 'Pirkt';
+        button.setAttribute('data-stage', 'buy');
+        button.disabled = true;
+        setTimeout(scrollToBottom, 100);
+
+        paymentForm.addEventListener('input', () => setButtonEnabled(paymentForm));
+    }
+
+    else if (stage === 'buy') {
+        if (!paymentForm.checkValidity()) {
+            console.log('payment form not valid');
+            paymentForm.reportValidity();
+            return;
+        }
+
+        localStorage.removeItem('cart');
+        window.location.href = 'success.html';
+    }
+});
 
 document.addEventListener('DOMContentLoaded', renderCart);

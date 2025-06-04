@@ -1,5 +1,10 @@
 body {
-    background-color: #e4dede;
+    color: white;
+    background-image: url("../images/background.jpg");
+    background-repeat: repeat-y;
+    background-size: 100% auto; 
+    min-height: 100vh;
+    font-family: 'Arial Black', Gadget, sans-serif;
 }
 
 h1,
@@ -12,12 +17,17 @@ p {
     margin-bottom: 0;
 }
 
-.navbar {
-    background-color: #e4dede;
-    border-bottom: 1px solid white;
+.nav-link, .navbar-brand {
+    color: white !important;
+    font-weight: bold;
 }
 
-footer {
-    background-color: #c4bfbf;
-    border-top: 1px solid white;
+.hover-link {
+    color: white;
+    text-decoration: none;
+}
+
+.hover-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }

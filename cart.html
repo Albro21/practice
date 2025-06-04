@@ -15,93 +15,159 @@
     </head>
 
     <body class="d-flex flex-column min-vh-100">
-        <nav class="navbar sticky-top navbar-expand-lg">
-            <div class="container">
-                <a class="navbar-brand" href="#">
-                    <h2>Foody</h2>
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link" aria-current="page" href="#">
-                            <h5>Home</h5>
-                        </a>
-                        <a class="nav-link" href="index.html">
-                            <h5>Catalog</h5>
-                        </a>
-                        <a class="nav-link active" href="cart.html">
-                            <h5>Cart</h5>
-                        </a>
-                        <a class="nav-link" href="#">
-                            <h5>About us</h5>
-                        </a>
-                    </div>
+        
+        <!-- Navbar -->
+        <nav class="navbar sticky-top navbar-expand-lg px-4">
+            <a class="navbar-brand" href="index.html">
+                <h1>FOODY</h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavAltMarkup">
+                <div class="navbar-nav">
+                    <a class="nav-link" href="index.html">
+                        <h4>SĀKUMS</h4>
+                    </a>
+                    <a class="nav-link" href="catalog.html">
+                        <h4>KATALOGS</h4>
+                    </a>
+                    <a class="nav-link" href="cart.html">
+                        <h4>GROZS</h4>
+                    </a>
+                    <a class="nav-link disabled" href="#">
+                        <h4>PAR MUMS</h4>
+                    </a>
                 </div>
             </div>
         </nav>
 
         <div class="container d-flex flex-column flex-fill">
-            <h1 class="my-4">Shopping Cart</h1>
+    <h1 class="my-4">Iešanas grozs</h1>
 
-            <div class="d-flex flex-column">
-                <div class="row align-items-center py-2 mx-0">
-                    <div class="col-6 fw-bold">Product</div>
-                    <div class="col fw-bold text-center">Price</div>
-                    <div class="col fw-bold text-center">Quantity</div>
-                    <div class="col fw-bold text-center">Subtotal</div>
-                    <div class="col fw-bold text-center">Remove</div>
+    <div class="d-flex flex-column">
+
+        <!-- Table header -->
+        <div class="row align-items-center py-2 mx-0">
+            <div class="col-6 fw-bold">Produkts</div>
+            <div class="col fw-bold text-center">Cena</div>
+            <div class="col fw-bold text-center">Daudzums</div>
+            <div class="col fw-bold text-center">Starpsumma</div>
+            <div class="col fw-bold text-center">Noņemt</div>
+        </div>
+
+        <!-- Cart items are placed here -->
+        <div class="d-flex flex-column" id="cart-items"></div>
+            </div>
+
+            <!-- Address collapse -->
+            <div class="collapse" id="address-collapse">
+                <div class="card p-4 mt-4" style="background-color: #c4bfbf;">
+                    <form id="address-form">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="fullName" class="form-label">Pilns vārds</label>
+                                <input type="text" class="form-control" id="fullName" placeholder="Jānis Bērziņš" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phoneNumber" class="form-label">Telefona numurs</label>
+                                <input type="tel" class="form-control" id="phoneNumber" pattern="^(\+371\s?)?(\d{8})$" placeholder="+371 12345678" required>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 mb-3">
+                                <label for="houseNumber" class="form-label">Mājas / dzīvokļa numurs</label>
+                                <input type="text" class="form-control" id="houseNumber" name="address-line2" autocomplete="address-line2" placeholder="50-5" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="streetAddress" class="form-label">Ielas nosaukums</label>
+                                <input type="text" class="form-control" id="streetAddress" name="address-line1" autocomplete="address-line1" placeholder="Brīvības iela" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="city" class="form-label">Pilsēta</label>
+                                <input type="text" class="form-control" id="city" placeholder="Rīga" required>
+                            </div>
+                            <div class="col-md-3 mb-3">
+                                <label for="postalCode" class="form-label">Pasta indekss</label>
+                                <input type="text" class="form-control" id="postalCode" pattern="^LV-\d{4}$" placeholder="LV-1050" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Papildu piezīmes (pēc izvēles)</label>
+                            <textarea class="form-control" id="notes" rows="2" placeholder="Vārtejas kods, stāvs..."></textarea>
+                        </div>
+                    </form>
                 </div>
-                <div class="d-flex flex-column" id="cart-items"></div>
+            </div>
+
+            <!-- Payment Collapse -->
+            <div class="collapse" id="payment-collapse">
+                <div class="card p-4 mt-4" style="background-color: #c4bfbf;">
+                    <form id="payment-form">
+                        <div class="mb-3">
+                            <label for="cardNumber" class="form-label">Kartes numurs</label>
+                            <input type="text" class="form-control" id="cardNumber" pattern="(\d{16}|\d{4} \d{4} \d{4} \d{4})" placeholder="1234 5678 9012 3456" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="expiry" class="form-label">Derīguma termiņš</label>
+                                <input type="text" class="form-control" id="expiry" pattern="(0[1-9]|1[0-2])\/\d{2}" placeholder="MM/YY" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="cvv" class="form-label">CVV</label>
+                                <input type="text" class="form-control" id="cvv" pattern="\d{3}" placeholder="123" required>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <div class="d-flex justify-content-between align-items-center mt-4">
-                <a href="index.html" class="btn btn-outline-primary">← Continue Shopping</a>
-                <div style="min-width: 230px;">
+                <a href="catalog.html" class="btn btn-primary">← Turpināt iepirkties</a>
+                <div style="min-width: 300px;">
                     <div class="d-flex justify-content-between">
-                        <h5>Without PVN:</h5> <h5 id="cart-total-net">€0.00</h5>
+                        <h5>Bez PVN:</h5> <h5 id="cart-total-net">€0.00</h5>
                     </div>
                     <div class="d-flex justify-content-between">
                         <h6>PVN (21%):</h6> <h6 id="cart-total-pvn">€0.00</h6>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <h5>Total (Incl. PVN):</h5> <h5 id="cart-total">€0.00</h5>
+                        <h5>Kopā (ar PVN):</h5> <h5 id="cart-total">€0.00</h5>
                     </div>
-                    <button id="checkout-btn" class="btn btn-primary mt-2 w-100">Checkout</button>
+                    <button id="checkout-btn" class="btn btn-primary mt-2 w-100" data-stage="checkout">Pasūtīt</button>
                 </div>
             </div>
         </div>
 
         <!-- Footer -->
         <footer class="mt-5">
-            <div class="container py-4">
-                <div class="row">
+            <div class="px-4">
+                <div class="row border-top pt-3">
                     <div class="col-md-4 d-flex flex-column">
                         <h5 class="mb-2">Company</h5>
-                        <a href="#" class="text-black text-decoration-none">About Us</a>
-                        <a href="#" class="text-black text-decoration-none">Careers</a>
-                        <a href="#" class="text-black text-decoration-none">Press</a>
+                        <a href="#" class="text-white text-decoration-none">About Us</a>
+                        <a href="#" class="text-white text-decoration-none">Careers</a>
+                        <a href="#" class="text-white text-decoration-none">Press</a>
                     </div>
                     <div class="col-md-4 d-flex flex-column align-items-center">
                         <h5 class="mb-2">Follow Us</h5>
-                        <a href="#" class="text-black me-2 text-decoration-none"><i class="bi bi-facebook"></i>
-                            Facebook</a><br>
-                        <a href="#" class="text-black me-2 text-decoration-none"><i class="bi bi-twitter"></i>
-                            Twitter</a><br>
-                        <a href="#" class="text-black text-decoration-none"><i class="bi bi-instagram"></i> Instagram</a>
+                        <a href="#" class="text-white text-decoration-none"><i class="bi bi-facebook me-2"></i>Facebook</a>
+                        <a href="#" class="text-white text-decoration-none"><i class="bi bi-twitter me-2"></i>Twitter</a>
+                        <a href="#" class="text-white text-decoration-none"><i class="bi bi-instagram me-2"></i>Instagram</a>
                     </div>
                     <div class="col-md-4 d-flex flex-column align-items-end">
                         <h5 class="mb-2">Support</h5>
-                        <a href="#" class="text-black text-decoration-none">Contact</a>
-                        <a href="#" class="text-black text-decoration-none">Help Center</a>
-                        <a href="#" class="text-black text-decoration-none">Privacy Policy</a>
+                        <a href="#" class="text-white text-decoration-none">Contact</a>
+                        <a href="#" class="text-white text-decoration-none">Help Center</a>
+                        <a href="#" class="text-white text-decoration-none">Privacy Policy</a>
                     </div>
                 </div>
 
                 <!-- Copyright -->
-                <div class="text-center pt-3 border-top mt-3">
+                <div class="text-center py-3 border-top mt-3">
                     <p class="mb-0">&copy; 2025 Foody. All rights reserved.</p>
                 </div>
             </div>

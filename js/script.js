@@ -1,11 +1,35 @@
-document.querySelectorAll('.bi-heart, .bi-heart-fill').forEach(heart => {
+
+const hearts = document.querySelectorAll('.bi-heart, .bi-heart-fill');
+
+function saveHeartState(id, isFilled) {
+    localStorage.setItem('heart-' + id, isFilled ? 'filled' : 'empty');
+}
+
+function getHeartState(id) {
+    return localStorage.getItem('heart-' + id);
+}
+
+hearts.forEach(heart => {
+    const id = heart.id;
+
+    const state = getHeartState(id);
+    if (state === 'filled') {
+        heart.classList.replace('bi-heart', 'bi-heart-fill');
+        heart.style.color = 'red';
+    } else {
+        heart.classList.replace('bi-heart-fill', 'bi-heart');
+        heart.style.color = '';
+    }
+
     heart.addEventListener('click', () => {
         if (heart.classList.contains('bi-heart')) {
             heart.classList.replace('bi-heart', 'bi-heart-fill');
             heart.style.color = 'red';
+            saveHeartState(id, true);
         } else {
             heart.classList.replace('bi-heart-fill', 'bi-heart');
             heart.style.color = '';
+            saveHeartState(id, false);
         }
     });
 });
@@ -16,6 +40,21 @@ document.querySelectorAll('.bi-cart, .bi-cart-fill').forEach(cartIcon => {
             cartIcon.classList.replace('bi-cart', 'bi-cart-fill');
             cartIcon.style.color = '#0d6efd';
 
+            const rect = cartIcon.getBoundingClientRect();
+            const plusOne = document.createElement('span');
+            plusOne.textContent = '+1';
+            plusOne.className = 'plus-one';
+
+            plusOne.style.position = 'fixed';
+            plusOne.style.left = `${rect.left + 2}px`;
+            plusOne.style.top = `${rect.top - 12}px`;
+
+            document.body.appendChild(plusOne);
+
+            setTimeout(() => {
+                plusOne.remove();
+            }, 700);
+
             setTimeout(() => {
                 cartIcon.classList.replace('bi-cart-fill', 'bi-cart');
                 cartIcon.style.color = '';
@@ -24,14 +63,14 @@ document.querySelectorAll('.bi-cart, .bi-cart-fill').forEach(cartIcon => {
     });
 });
 
-const image = document.getElementById('rotating-image');
-const totalImages = 7;
-let currentIndex = 1;
+const rotatingImages = document.querySelectorAll('.rotating-image');
+const totalImages = 9;
 
 setInterval(() => {
-    currentIndex++;
-    if (currentIndex > totalImages) currentIndex = 1;
-    image.src = `images/food_plate_${currentIndex}.png`;
+    rotatingImages.forEach(img => {
+        const randomIndex = Math.floor(Math.random() * totalImages) + 1;
+        img.src = `images/food_plate_${randomIndex}.png`;
+    });
 }, 2000);
 
 function addToCart(id, name, image, price) {

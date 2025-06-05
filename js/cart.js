@@ -10,7 +10,7 @@ function renderCart() {
     let total = 0;
 
     if (cart.length === 0) {
-        cartItems.innerHTML = `<h3 class="text-center mt-4">Your cart is empty</h3>`;
+        cartItems.innerHTML = `<h3 class="text-center mt-4">Jūsu grozs ir tukšs</h3>`;
         checkoutBtn.disabled = true;
         totalElem.textContent = '€0.00';
         if (totalNetElem) totalNetElem.textContent = '€0.00';

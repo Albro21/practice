@@ -1,4 +1,3 @@
-
 const hearts = document.querySelectorAll('.bi-heart, .bi-heart-fill');
 
 function saveHeartState(id, isFilled) {
@@ -69,7 +68,7 @@ const totalImages = 9;
 setInterval(() => {
     rotatingImages.forEach(img => {
         const randomIndex = Math.floor(Math.random() * totalImages) + 1;
-        img.src = `images/food_plate_${randomIndex}.png`;
+        img.src = `images/food_plate_${randomIndex}.avif`;
     });
 }, 2000);
 

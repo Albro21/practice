@@ -91,6 +91,9 @@
 @media (max-width: 1000px) {
     .card-image {
         width: 90%;
+        box-shadow: none;
+        transition: none;
+        z-index: auto;
     }
 
     .food-card {

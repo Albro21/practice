@@ -93,11 +93,16 @@
         width: 90%;
         box-shadow: none;
         transition: none;
-        z-index: auto;
+        will-change: auto;
     }
 
     .food-card {
         width: 80%;
         height: 300px;
+    }
+
+    .hover-image {
+        animation: none !important;
+        transform: none !important;
     }
 }

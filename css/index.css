@@ -1,0 +1,30 @@
+.underquote {
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.rotating-image {
+    animation: spinRotate 30s infinite linear;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.5);
+    transition: box-shadow 0.3s ease-in-out;
+}
+
+@keyframes spinRotate {
+    from {
+        transform: rotate(0deg) translate(0);
+    }
+
+    to {
+        transform: rotate(360deg) translate(0);
+    }
+}
+
+.hover-image:hover {
+    box-shadow: 0 0 20px 5px rgba(255, 165, 0, 1);
+    cursor: pointer;
+}
+
+@media (max-width: 1000px) {
+    .rotating-image {
+        display: none;
+    }
+}

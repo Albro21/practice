@@ -1,4 +1,3 @@
-
 const hearts = document.querySelectorAll('.bi-heart, .bi-heart-fill');
 
 function saveHeartState(id, isFilled) {
